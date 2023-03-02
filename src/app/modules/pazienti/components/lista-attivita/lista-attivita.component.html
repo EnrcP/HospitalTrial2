@@ -1,0 +1,10 @@
+<ul *ngFor="let attivita of listaAttivita" class="col-sm-3">
+  <div class="card" style="width: 18rem; margin: 20px; margin-left: 20px;">
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Attività: {{attivita.activity}} </li>
+        <li class="list-group-item">Intensità: {{ attivita.intensity }}</li>
+      </ul>
+    </div>
+  </div>
+</ul>
