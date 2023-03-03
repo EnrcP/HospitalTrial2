@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PatientService } from 'src/app/core/services/patient.service';
 import { IPersone } from 'src/app/core/interfaces/ipersone';
@@ -14,46 +14,24 @@ import { ISummary } from 'src/app/core/interfaces/isummary';
 })
 export class ListaPazientiComponent implements OnInit{
 
-  listaPazienti: IPersone[]=[]
-  listaAttivita: IActivities[]=[]
-  mostraPazienti: boolean=false;
-  mostraAttivita: boolean=false;
 
-  constructor(private pazienteService: PatientService,
-              private router: Router,
-              private http: HttpClient,
-    ) {
+  listaPazienti: IPersone[]=[];
+  listaAttivita: IActivities[]=[];
 
-  }
+  constructor(private pazienteService: PatientService, private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
 
+    this.listaAttivita=this.pazienteService.attivita;
+    this.listaPazienti=this.pazienteService.persone;
 
-    this.pazienteService.getPersone().subscribe(
-      (pazienti: IPersone[]) => {
-        this.listaPazienti = pazienti
-        this.listaPazienti.forEach(paziente => {
-          this.pazienteService.getSummary(paziente.id).subscribe(data => {
-            paziente.summary = data;
-
-          });
-        })
-        //console.log(this.listaPazienti);
-        this.mostraPazienti=true;
-      })
-
-      this.pazienteService.getAttiv().subscribe(
-        (attivita: IActivities[]) => {
-          this.listaAttivita = attivita
-          this.mostraAttivita=true;
-        }
-      )
-      console.log(this.pazienteService.attività)
-      this.listaAttivita=this.pazienteService.attività;
-      this.listaPazienti=this.pazienteService.persone;
+    console.log(this.listaAttivita);
+    console.log(this.listaPazienti);  
+      
   }
-  sceltaColore(summary: ISummary[]): string{
 
+  sceltaColore(summary: ISummary[]): string{
+ 
     var in_salute = false;
     var moderate = false;
     var vigorous = false;
@@ -77,34 +55,17 @@ export class ListaPazientiComponent implements OnInit{
             in_salute = true;
           }
         }
-    });
-  })
+      });
+    })
     if(in_salute){
       return "col-sm-3 bg-success"; 
     }else{
       return "col-sm-3 bg-danger"; 
-    }
+    }   
 
-  }
-  getPazienti(){
-    this.pazienteService.getPersone().subscribe(
-      (data: IPersone[]) => {
-        this.listaPazienti = data;
-      }
-    )
-  }
-
-  handleAccedi(persona: IPersone) {
-    alert("Ciao "+ persona.name+" , hai effettuato l'accesso!");
-  }
-
-  handleDipendente(url:string){
-    this.router.navigateByUrl("dipendenti/" + url);
-    console.log(url);
   }
 
   cambiaRotta(url:string){
-    console.log(url);
     this.router.navigateByUrl(url);
   }
 

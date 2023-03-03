@@ -12,7 +12,6 @@ import { PatientService } from 'src/app/core/services/patient.service';
 })
 export class PazientiComponent implements OnInit {
 
-
   listaPazienti: IPersone[]=[]
   listaAttivita: IActivities[]=[]
   summary : ISummary[] = [];
@@ -24,45 +23,26 @@ export class PazientiComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /* this.pazienteService.getPersone().subscribe(
-      (pazienti: IPersone[]) => {
-        this.listaPazienti = pazienti
-        this.listaPazienti.forEach(paziente => {
-          this.pazienteService.getSummary(paziente.id).subscribe(data => {
-            paziente.summary = data;
 
-          });
-        })
-        console.log(this.listaPazienti);
-      }
-
-
-    ) */
     this.pazienteService.getAttiv().subscribe(
       (attivita: IActivities[]) => {
-        this.listaAttivita = attivita
-        this.pazienteService.attività=attivita;
-        console.log(this.pazienteService.attività)
+        this.listaAttivita = attivita;
+        this.pazienteService.setAttiv(this.listaAttivita);     
       }
-
     )
 
     this.pazienteService.getPersone().subscribe(
       (pazienti: IPersone[]) => {
-        this.listaPazienti = pazienti
+        this.listaPazienti = pazienti;
         this.listaPazienti.forEach(paziente => {
           this.pazienteService.getSummary(paziente.id).subscribe(data => {
             paziente.summary = data;
-
           });
         })
-        console.log(this.listaPazienti);
-      })
-
-  }
-
-  cerca(){
-
+        this.pazienteService.setPersone(this.listaPazienti); 
+      }
+    )
+    
   }
 
 }

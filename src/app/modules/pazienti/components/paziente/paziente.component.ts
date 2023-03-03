@@ -24,7 +24,6 @@ export class PazienteComponent implements OnInit {
         this.listaPazienti.forEach(paziente => {
           this.pazienteService.getSummary(paziente.id).subscribe(data => {
             paziente.summary = data;
-            console.log(this.listaPazienti);
             this.setPaziente();
           });
         })
@@ -34,10 +33,8 @@ export class PazienteComponent implements OnInit {
   }
 
   setPaziente(){
-    this.route.params.subscribe(params => {
-      console.log(params);   
+    this.route.params.subscribe(params => {  
       this.persona = this.listaPazienti[params['id']-1];  
-      console.log(this.persona);   
     });
   }
 

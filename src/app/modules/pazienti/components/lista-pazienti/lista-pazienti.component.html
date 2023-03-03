@@ -10,7 +10,7 @@
       <th scope="col">bmi</th>
     </tr>
   </thead>
-  <tbody *ngIf="mostraPazienti && mostraAttivita">
+  <tbody>
     <tr *ngFor="let item of listaPazienti" [ngClass]="sceltaColore(item.summary)" (click)="cambiaRotta('pazienti/paziente/'+ item.id)">
       <td>{{item.id}}</td>
       <td>{{item.name}}</td>
