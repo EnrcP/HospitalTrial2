@@ -1,1 +1,26 @@
-<p>paziente works! Mia modifica</p>
+<div class="d-flex justify-content-center py-4">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <strong>{{persona.name}}</strong>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Genere: {{persona.gender}}</li>
+          <li class="list-group-item">Data di nascita: {{persona.birthDate}}</li>
+          <li class="list-group-item">Altezza: {{persona.heightCm}}</li>
+          <li class="list-group-item">Peso: {{persona.weightKg}}</li>
+          <li class="list-group-item">BMI: {{persona.bmi}}</li>
+          <li class="list-group-item">Summary: 
+            <button (click)="openSummary=!openSummary" class="btn btn-info">{{openSummary?'Nascondi':'Mostra'}}</button>
+            <div *ngIf="openSummary">
+                <div *ngFor="let item of persona.summary" class="border">
+                    <ul>
+                        <li>Attività: {{item.activity}}</li>
+                        <li>Tempo: {{item.minutes}} min</li>
+                    </ul>  
+                </div>
+            </div> 
+          </li>
+        </ul>
+    </div>
+</div>
+

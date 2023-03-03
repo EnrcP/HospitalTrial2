@@ -27,6 +27,10 @@ import { LegendaPazientiComponent } from './components/legenda-pazienti/legenda-
         {
           path:'lista-attivita',
           component: ListaAttivitaComponent,
+        },
+        {
+          path:'paziente/:id',
+          component: PazienteComponent,
         }
       ]
     }])

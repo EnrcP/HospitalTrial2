@@ -38,7 +38,7 @@ export class ListaPazientiComponent implements OnInit{
 
           });
         })
-        console.log(this.listaPazienti);
+        //console.log(this.listaPazienti);
         this.mostraPazienti=true;
       })
 
@@ -101,6 +101,11 @@ export class ListaPazientiComponent implements OnInit{
   handleDipendente(url:string){
     this.router.navigateByUrl("dipendenti/" + url);
     console.log(url);
+  }
+
+  cambiaRotta(url:string){
+    console.log(url);
+    this.router.navigateByUrl(url);
   }
 
 }
