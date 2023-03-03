@@ -12,11 +12,13 @@ import { CardPersonaComponent } from './modules/pazienti/components/card-persona
 import { CustomPipePipe } from './shared/pipes/custom-pipe.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaAttivitaComponent } from './modules/pazienti/components/lista-attivita/lista-attivita.component';
+import { LegendaPazientiComponent } from './modules/pazienti/components/legenda-pazienti/legenda-pazienti.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaAttivitaComponent,
+    LegendaPazientiComponent,
   ],
   imports: [
     BrowserModule,

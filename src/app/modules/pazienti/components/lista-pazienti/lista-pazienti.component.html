@@ -1,14 +1,24 @@
-<ul *ngFor="let item of listaPazienti" class="col-sm-3">
-  <div class="card" style="width: 18rem; margin: 20px; margin-left: 20px;">
-    <h5 class="card-title">{{ item.name }} id: {{ item.id }}</h5>
-    <div class="card-body">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Genere: {{item.gender}} </li>
-        <li class="list-group-item">Data di Nascita: {{ item.birthDate }}</li>
-        <li class="list-group-item">Altezza: {{ item.heightCm }}</li>
-        <li class="list-group-item">Peso: {{ item.weightKg }}</li>
-        <li class="list-group-item">Indice di massa corporea(bmi): {{ item.bmi }}</li>
-      </ul>
-    </div>
-  </div>
-</ul>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Nome e Cognome</th>
+      <th scope="col">Genere</th>
+      <th scope="col">Data di Nascita</th>
+      <th scope="col">Peso</th>
+      <th scope="col">Altezza</th>
+      <th scope="col">bmi</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="mostraPazienti && mostraAttivita">
+    <tr *ngFor="let item of listaPazienti" [ngClass]="sceltaColore(item.summary)">
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.gender}}</td>
+      <td>{{item.birthDate}}</td>
+      <td>{{item.weightKg}}</td>
+      <td>{{item.heightCm}}</td>
+      <td>{{item.bmi}}</td>
+    </tr>
+  </tbody>
+</table>

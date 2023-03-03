@@ -5,6 +5,7 @@ import { ListaAttivitaComponent } from './components/lista-attivita/lista-attivi
 import { ListaPazientiComponent } from './components/lista-pazienti/lista-pazienti.component';
 import { PazienteComponent } from './components/paziente/paziente.component';
 import { PazientiComponent } from './pages/pazienti/pazienti.component';
+import { LegendaPazientiComponent } from './components/legenda-pazienti/legenda-pazienti.component';
 
 
 @NgModule({
@@ -20,8 +21,8 @@ import { PazientiComponent } from './pages/pazienti/pazienti.component';
           component: ListaPazientiComponent,
         },
         {
-          path:'paziente',
-          component: PazienteComponent,
+          path:'legenda',
+          component: LegendaPazientiComponent,
         },
         {
           path:'lista-attivita',
