@@ -1,3 +1,5 @@
+import { ISummary } from "./isummary";
+
 export interface IPersone {
   id: number,
   name: string,
@@ -5,5 +7,6 @@ export interface IPersone {
   birthDate: string,
   heightCm: number,
   weightKg: number,
-  bmi: number
+  bmi: number,
+  summary: ISummary[]
 }

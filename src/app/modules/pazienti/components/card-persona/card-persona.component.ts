@@ -11,7 +11,7 @@ import { CustomPipePipe } from 'src/app/shared/pipes/custom-pipe.pipe';
 })
 export class CardPersonaComponent implements OnInit{
 
-  @Input() persona: IPersone = { id: 0, name : '', gender: '', birthDate: '', heightCm: 0, weightKg: 0, bmi: 0 };
+  @Input() persona: IPersone = { id: 0, name : '', gender: '', birthDate: '', heightCm: 0, weightKg: 0, bmi: 0 , summary: []};
   @Output() nomePersona = new EventEmitter();
   @Output() dipendenteSelezionato = new EventEmitter<string>();
 
