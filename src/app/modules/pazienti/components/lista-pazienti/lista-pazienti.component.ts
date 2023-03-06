@@ -37,25 +37,6 @@ export class ListaPazientiComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.pazienteService.getPersone().subscribe(
-      (pazienti: IPersone[]) => {
-        this.listaPazienti = pazienti
-        this.listaPazienti.forEach(paziente => {
-          this.pazienteService.getSummary(paziente.id).subscribe(data => {
-            paziente.summary = data;
-
-          });
-        })
-        this.mostraPazienti=true;
-      })
-
-      this.pazienteService.getAttiv().subscribe(
-        (attivita: IActivities[]) => {
-          this.listaAttivita = attivita
-          this.mostraAttivita=true;
-        }
-      )
-
       document.addEventListener('DOMContentLoaded', () => {
         const selectElement = document.getElementById('sceltaFiltro') as HTMLSelectElement;
         const selectedValue = selectElement.value;
@@ -63,7 +44,7 @@ export class ListaPazientiComponent implements OnInit{
         // resto del codice qui...
       });
 
-      this.listaAttivita=this.pazienteService.attività;
+      this.listaAttivita=this.pazienteService.attivita;
       this.listaPazienti=this.pazienteService.persone;
   }
   sceltaColore(summary: ISummary[]): string{
@@ -91,8 +72,8 @@ export class ListaPazientiComponent implements OnInit{
             in_salute = true;
           }
         }
-    });
-  })
+      });
+    })
     if(in_salute){
       return "col-sm-3 bg-success"; 
     }else{

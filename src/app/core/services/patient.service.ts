@@ -10,15 +10,24 @@ import { ISummary } from '../interfaces/isummary';
 export class PatientService {
 
   persone: IPersone[] = [];
-  attività: IActivities[] = [];
+  attivita: IActivities[] = [];
 
   constructor(private http: HttpClient) { }
 
   getPersone(){
     return this.http.get<IPersone[]>('../../../assets/json/patients.json');
   }
+
+  setPersone(persone: IPersone[]){
+    this.persone = persone;
+  }
+
   getAttiv(){
     return this.http.get<IActivities[]>('../../../assets/json/definitions/activities.json');
+  }
+
+  setAttiv(attivita: IActivities[]){
+    this.attivita = attivita;
   }
 
   getSummary(id: number){
