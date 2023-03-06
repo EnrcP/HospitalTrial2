@@ -1,0 +1,10 @@
+<h1 class="text-center">Benvenuto nella pagina pazienti</h1>
+<h2 class="text-center">Qui potrai gestire tutti i tuoi pazienti</h2>
+<div class="d-flex justify-content-center py-3">
+    <button (click)="cambiaRotta('pazienti/legenda')" class="mx-3 btn btn-success">Legenda</button>
+    <button (click)="cambiaRotta('pazienti/lista-pazienti')" class="mx-3 btn btn-success">Lista pazienti</button>
+    <button (click)="cambiaRotta('pazienti/lista-attivita')" class="mx-3 btn btn-success">Lista attività</button>
+</div>
+<router-outlet></router-outlet>
+<!-- <h2>Filtro</h2>
+<button (click)="cerca()" class="mx-3 btn btn-success">Cerca</button> -->
