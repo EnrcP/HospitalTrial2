@@ -13,7 +13,7 @@ export class PazienteComponent implements OnInit {
   listaPazienti: IPersone[]=[]
   persona: IPersone = { id: 0, name : '', gender: '', birthDate: '', heightCm: 0, weightKg: 0, bmi: 0 , summary: []};
   openSummary: boolean = false;
-  
+
   constructor(private route: ActivatedRoute, private pazienteService: PatientService) { }
 
   ngOnInit(): void {
@@ -24,28 +24,16 @@ export class PazienteComponent implements OnInit {
         this.listaPazienti.forEach(paziente => {
           this.pazienteService.getSummary(paziente.id).subscribe(data => {
             paziente.summary = data;
-<<<<<<< HEAD
-            console.log(this.listaPazienti);
-=======
->>>>>>> origin/main
             this.setPaziente();
           });
         })
       }
-    ) 
-    
+    )
   }
 
   setPaziente(){
-<<<<<<< HEAD
     this.route.params.subscribe(params => {
-      console.log(params);   
-      this.persona = this.listaPazienti[params['id']-1];  
-      console.log(this.persona);   
-=======
-    this.route.params.subscribe(params => {  
-      this.persona = this.listaPazienti[params['id']-1];  
->>>>>>> origin/main
+      this.persona = this.listaPazienti[params['id']-1];
     });
   }
 

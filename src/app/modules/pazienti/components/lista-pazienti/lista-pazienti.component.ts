@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { PatientService } from 'src/app/core/services/patient.service';
 import { IPersone } from 'src/app/core/interfaces/ipersone';
@@ -12,12 +12,12 @@ import { ISummary } from 'src/app/core/interfaces/isummary';
   templateUrl: './lista-pazienti.component.html',
   styleUrls: ['./lista-pazienti.component.scss']
 })
-export class ListaPazientiComponent implements OnInit{
+export class ListaPazientiComponent implements OnInit, OnChanges{
 
   listaPazienti: IPersone[]=[]
   listaPazientiFiltrati: IPersone[]=[]
   listaAttivita: IActivities[]=[]
-  mostraPazienti: boolean=false;
+  mostraPazienti: boolean=true;
   mostraAttivita: boolean=false;
   userInput: string="";
   userSeleziona: string="";
@@ -32,21 +32,25 @@ export class ListaPazientiComponent implements OnInit{
               private router: Router,
               private http: HttpClient,
     ) {
-
   }
 
   ngOnInit(): void {
 
-      document.addEventListener('DOMContentLoaded', () => {
+      /* document.addEventListener('DOMContentLoaded', () => {
         const selectElement = document.getElementById('sceltaFiltro') as HTMLSelectElement;
         const selectedValue = selectElement.value;
         this.userSeleziona=selectedValue;
-        // resto del codice qui...
-      });
-
+      }); */
       this.listaAttivita=this.pazienteService.attivita;
       this.listaPazienti=this.pazienteService.persone;
-  }
+
+    }
+    ngOnChanges(changes: SimpleChanges): void {
+      this.listaAttivita=this.pazienteService.attivita;
+      this.listaPazienti=this.pazienteService.persone;
+    }
+
+
   sceltaColore(summary: ISummary[]): string{
 
     var in_salute = false;
@@ -74,6 +78,7 @@ export class ListaPazientiComponent implements OnInit{
         }
       });
     })
+
     if(in_salute){
       return "col-sm-3 bg-success"; 
     }else{
@@ -129,20 +134,17 @@ export class ListaPazientiComponent implements OnInit{
     this.listaPazienti.forEach(paziente => {
       if(this.userSeleziona=="NomeCognome"){
         if(paziente.name.startsWith(this.userInput)){
-          console.log("comincia")
           this.listaPazientiFiltrati.push(paziente);
         }
       }
       if(this.userSeleziona=="Genere"){
         this.getGenere()
-        console.log(this.userInput)
         if(paziente.gender===this.userInput){
           this.listaPazientiFiltrati.push(paziente)
         }
       }
       if(this.userSeleziona=="DataNascita"){
         this.getData()
-        console.log(this.userInput)
         if(paziente.birthDate===this.userInput){
           this.listaPazientiFiltrati.push(paziente)
         }
@@ -156,15 +158,6 @@ export class ListaPazientiComponent implements OnInit{
         this.listaPazienti = data;
       }
     )
-  }
-
-  handleAccedi(persona: IPersone) {
-    alert("Ciao "+ persona.name+" , hai effettuato l'accesso!");
-  }
-
-  handleDipendente(url:string){
-    this.router.navigateByUrl("dipendenti/" + url);
-    console.log(url);
   }
 
   cambiaRotta(url:string){

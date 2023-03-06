@@ -42,7 +42,5 @@ export class PazientiComponent implements OnInit {
         this.pazienteService.setPersone(this.listaPazienti);
       }
     )
-
   }
-
 }
