@@ -33,6 +33,7 @@ export class PatientService {
   getSummary(id: number){
     return this.http.get<ISummary[]>('../../../assets/json/patients/'+id+'/summary.json');
   }
+  
   pushPersone(persona: IPersone) {
     this.persone.push(persona);
   }

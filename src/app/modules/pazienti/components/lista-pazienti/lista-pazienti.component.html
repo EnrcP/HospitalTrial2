@@ -1,4 +1,41 @@
-<table class="table table-hover">
+<form class="form-inline">
+<div class="form-group">
+  <label class="sr-only">Seleziona l'argomento del filtro</label>
+  <select id="sceltaFiltro" class="form-control" (click)="getTipoFiltro()">
+    <option value="Seleziona">Seleziona</option>
+    <option value="NomeCognome">Nome e Cognome</option>
+    <option value="Genere">Genere</option>
+    <option value="DataNascita">Data di Nascita</option>
+  </select>
+</div>
+<div>
+  <label *ngIf="sceltaGenere" class="sr-only">Seleziona il Genere</label>
+  <select *ngIf="sceltaGenere" id="sceltaGenere" class="form-control" (click)="getGenere()">
+    <option value="Seleziona">Seleziona</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+</div>
+<div *ngIf="sceltaData">
+<label for="data">Seleziona una data:</label>
+<input type="date" id="data" name="data">
+</div>
+<div class="form-group footable-filtering-search">
+  <label *ngIf="noGenere" class="sr-only">Search</label>
+  <div class="input-group">
+    <input *ngIf="noGenere" type="text" class="form-control" placeholder="Search" (keyup)="onKeyUp($event)">
+    <div class="input-group-btn">
+      <button type="button" class="btn btn-primary" (click)="getFiltro() ">
+        Filtra
+      </button>
+      <button *ngIf="mostraBottone" type="button" class="btn btn-primary" (click)="mostraPazientiB()">
+        Mostra Pazienti
+      </button>
+    </div>
+  </div>
+</div>
+</form>
+<table *ngIf="mostraPazienti" class="table table-hover">
   <thead>
     <tr>
       <th scope="col">id</th>
@@ -22,3 +59,28 @@
     </tr>
   </tbody>
 </table>
+<table *ngIf="ciclaPazientiFiltrati" class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Nome e Cognome</th>
+      <th scope="col">Genere</th>
+      <th scope="col">Data di Nascita</th>
+      <th scope="col">Peso</th>
+      <th scope="col">Altezza</th>
+      <th scope="col">bmi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of listaPazientiFiltrati" (click)="cambiaRotta('pazienti/paziente/'+ item.id)" >
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.gender}}</td>
+      <td>{{item.birthDate}}</td>
+      <td>{{item.weightKg}}</td>
+      <td>{{item.heightCm}}</td>
+      <td>{{item.bmi}}</td>
+    </tr>
+  </tbody>
+</table>
+

@@ -27,7 +27,7 @@ export class PazientiComponent implements OnInit {
     this.pazienteService.getAttiv().subscribe(
       (attivita: IActivities[]) => {
         this.listaAttivita = attivita;
-        this.pazienteService.setAttiv(this.listaAttivita);     
+        this.pazienteService.setAttiv(this.listaAttivita);
       }
     )
 
@@ -39,10 +39,8 @@ export class PazientiComponent implements OnInit {
             paziente.summary = data;
           });
         })
-        this.pazienteService.setPersone(this.listaPazienti); 
+        this.pazienteService.setPersone(this.listaPazienti);
       }
     )
-    
   }
-
 }
