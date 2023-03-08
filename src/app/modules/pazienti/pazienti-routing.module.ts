@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ListaAttivitaComponent } from './components/lista-attivita/lista-attivita.component';
 import { ListaPazientiComponent } from './components/lista-pazienti/lista-pazienti.component';
 import { PazienteComponent } from './components/paziente/paziente.component';

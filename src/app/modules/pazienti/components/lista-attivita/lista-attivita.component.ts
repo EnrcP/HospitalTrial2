@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from 'src/app/core/services/patient.service';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { IActivities } from 'src/app/core/interfaces/iactivities';
 
 @Component({
@@ -12,11 +10,9 @@ import { IActivities } from 'src/app/core/interfaces/iactivities';
 export class ListaAttivitaComponent implements OnInit{
 
   listaAttivita: IActivities[]= []
-item: any;
+  item: any;
 
-  constructor(private pazienteService: PatientService,
-    private router: Router,
-    private http: HttpClient){
+  constructor(private pazienteService: PatientService){
   }
 
   ngOnInit(): void {
@@ -26,6 +22,7 @@ item: any;
       }
     )
   }
+
   getAttivita(){
     this.pazienteService.getAttiv().subscribe(
       (attivita: IActivities[]) => {
@@ -33,5 +30,4 @@ item: any;
       }
     )
   }
-
 }
