@@ -17,8 +17,7 @@ import { CustomPipePipe } from 'src/app/shared/pipes/custom-pipe.pipe';
   ],
   imports: [
     CommonModule,
-    PazientiRoutingModule,
-
+    PazientiRoutingModule
   ]
 })
 export class PazientiModule { }

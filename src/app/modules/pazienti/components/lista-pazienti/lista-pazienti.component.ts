@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PatientService } from 'src/app/core/services/patient.service';
 import { IPersone } from 'src/app/core/interfaces/ipersone';
@@ -12,7 +12,7 @@ import { ISummary } from 'src/app/core/interfaces/isummary';
   templateUrl: './lista-pazienti.component.html',
   styleUrls: ['./lista-pazienti.component.scss']
 })
-export class ListaPazientiComponent implements OnInit, OnChanges{
+export class ListaPazientiComponent implements OnInit{
 
   listaPazienti: IPersone[]=[]
   listaPazientiFiltrati: IPersone[]=[]
@@ -36,20 +36,10 @@ export class ListaPazientiComponent implements OnInit, OnChanges{
 
   ngOnInit(): void {
 
-      /* document.addEventListener('DOMContentLoaded', () => {
-        const selectElement = document.getElementById('sceltaFiltro') as HTMLSelectElement;
-        const selectedValue = selectElement.value;
-        this.userSeleziona=selectedValue;
-      }); */
       this.listaAttivita=this.pazienteService.attivita;
       this.listaPazienti=this.pazienteService.persone;
 
     }
-    ngOnChanges(changes: SimpleChanges): void {
-      this.listaAttivita=this.pazienteService.attivita;
-      this.listaPazienti=this.pazienteService.persone;
-    }
-
 
   sceltaColore(summary: ISummary[]): string{
 
@@ -80,9 +70,9 @@ export class ListaPazientiComponent implements OnInit, OnChanges{
     })
 
     if(in_salute){
-      return "col-sm-3 bg-success"; 
+      return "col-sm-3 bg-success";
     }else{
-      return "col-sm-3 bg-danger"; 
+      return "col-sm-3 bg-danger";
     }
 
   }
@@ -161,7 +151,6 @@ export class ListaPazientiComponent implements OnInit, OnChanges{
   }
 
   cambiaRotta(url:string){
-    console.log(url);
     this.router.navigateByUrl(url);
   }
 
